@@ -15,13 +15,13 @@ function param_extract(varargin)
 studyDIR='/u/project/sanscn/data/SAFETY/';
 subIDpre='SAS';
 
-taskID='HAE/Acquisition';
-analysisID='Acquisition_gsrSubs_minConds_anyTrials_lastfirst3_1sShock';
+taskID='HAE/Habit_Acqui';
+analysisID='Habit_Aqui_firstlast4_hpf128ar1';
 
 outFolder=fullfile(studyDIR,'_param_ests',taskID,analysisID);
 
 %Optional inputs to make your life easier:
-roiFolder=fullfile(studyDIR,'_automation/ROI/masks');       %if leaving blank, leave as ''
+roiFolder='/u/project/sanscn/cjlescha/ROIs_2019';       %if leaving blank, leave as ''
 conFolder=fullfile(studyDIR,'_contrasts',taskID,analysisID); %if leaving blank, leave as ''
 
 
@@ -260,11 +260,11 @@ data_SPSSxl={};
 curColStart=2;
 curColEnd=255;
 
-
+save('roi_workspace')
 for yy=1:numXLfiles
     
-    if curColEnd>length(data_SPSS)
-        curColEnd=length(data_SPSS);
+    if curColEnd>size(data_SPSS,2)
+        curColEnd=size(data_SPSS,2);
     end
   
     yyData={data_SPSS(:,1) data_SPSS(:,curColStart:curColEnd)};
